@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @Fredware
-- 👀 I’m interested in Neural Engineering, Brain-Machine Interfaces, Robotics, Neural Interfaces and Prosthetics
+- 👀 I’m a Neural Engineering researcher, interested in Neural Interfaces, Robotics, Edge AI and Smart Prosthetics
 - 🌱 I’m currently learning C and C++ for DSP
 - 💞️ I’m looking to collaborate on FOSS projects relating to my areas of interest
 
