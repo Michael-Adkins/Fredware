@@ -161,14 +161,16 @@ colormap(ax(5), gray(80));
 % Continous Wavelet Transform (CWT) - Farzad
 % Hilbert-Huang Transform (HHT) - Vaishnavi Rao
 
-% STFT
+%% STFT
 figure()
 pspectrum(signal,fs,'spectrogram','FrequencyLimits',[1 2000],'Leakage',0.80,'MinThreshold',-50, 'OverlapPercent',80, 'FrequencyResolution',250)
+figure()
 pspectrum(signal,fs,'spectrogram','FrequencyLimits',[1 2000],'Leakage',0.80,'MinThreshold',-50, 'OverlapPercent',80, 'FrequencyResolution',100)
+figure()
 pspectrum(signal,fs,'spectrogram','FrequencyLimits',[1 2000],'Leakage',0.80,'MinThreshold',-50, 'OverlapPercent',80, 'FrequencyResolution',10)
 
-% DWT
-
+%% DWT
+figure()
 fig = figure();
 % fontsize(fig, 18, "points")
 colormap(gray(100));
@@ -193,6 +195,7 @@ title('DWT Detail Coefficients (Magnitude)');
 ylabel('Decomposition Level');
 xlabel("Time (s)")
 
+figure()
 wname = 'db1';
 itr = 100;
 [phi,psi,xval] = wavefun(wname,1);
@@ -210,9 +213,9 @@ grid on; axis square; box off
 title([wname,' Scaling'])
 xlim([min(xval)-plot_offset, max(xval)+plot_offset])
 ylim([min(phi)-plot_offset, max(phi)+plot_offset])
-% CWT
-
-%% Denoise Neural Data
+%% CWT
+figure()
+% Denoise Neural Data
 filtered_neural_data = [];
 quiescent_period = 15.5*fs:17*fs;
 
@@ -225,19 +228,22 @@ for ch_idx=1:6
     filtered_neural_data = [filtered_neural_data denoised_ch'];
 end
 filt_data_norm = filtered_neural_data/max(filtered_neural_data(:));
-%% Continous Wavelet Transform
+% Continous Wavelet Transform
 selected_ch = filt_data_norm(:,1);  % selecting filtered data
 %selected_ch = neural_ch1;            % selecting unfiltered data
 figure(6)
 tic
+figure()
 cwt(selected_ch,'morse',fs,'WaveletParameters',[100,4000]); % Filtered data spectrogram
+figure()
 cwt(selected_ch,'morse',fs,'WaveletParameters',[3,10]); % Filtered data spectrogram different Morse paramters
 neural_ch1 = raw_data_norm(:,1);
+figure()
 cwt(neural_ch1,'morse',fs,'WaveletParameters',[100,150]); % Unfiltered Neural data spectrogram
 toc
 % colormap(gray(40));
 
-% HHT
+%% HHT
 
 data = load('project_data.mat')
 signal = data.unfilteredNeuralData(:,1);
